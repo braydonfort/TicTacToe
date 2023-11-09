@@ -66,9 +66,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                             ResetButton(onClick = mainViewModel::reset)
-
                         }
-
                     }
                 }
             }

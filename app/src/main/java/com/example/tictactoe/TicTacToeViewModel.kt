@@ -21,25 +21,7 @@ class TicTacToeViewModel: ViewModel() {
     fun play(move: Int) {
         if (isGameOver) return
 
-        if (board[move] == "") {
-            if (currentPlayer.value == playerX) {
-                board = ArrayList(board.toMutableList().also {
-                    it[move] = playerX
-                })
-                currentPlayer.value = playerO
-
-            } else {
-                board = ArrayList(board.toMutableList().also {
-                    it[move] = playerO
-                })
-                currentPlayer.value = playerX
-
-            }
-        }
-
-        // calculate and show game result
-        isGameOver = isGameWon(board, playerX) || isGameWon(board, playerO) || isBoardFull(board)
-        winner = gameResult(board)
+        // TODO Write the logic for when a user clicks on one of the available TicTacToe spaces
 
     }
 
@@ -47,19 +29,14 @@ class TicTacToeViewModel: ViewModel() {
      * Resets the game
      * */
     fun reset() {
-        isGameOver = false
-        board = arrayListOf("", "", "", "", "", "", "", "", "")
-        currentPlayer.value = playerX
+        // TODO Write the logic for resetting the board state to its default settings
     }
 
     /**
      * Determine if the board is full
      * */
     fun isBoardFull(board: ArrayList<String>): Boolean {
-        for (i in board) {
-            if (i != playerX && i != playerO) return false
-        }
-        return true
+        return TODO("Fill in the logic for determining if there are no more moves to make")
     }
     /**
      * Determines if the game is won
@@ -73,16 +50,14 @@ class TicTacToeViewModel: ViewModel() {
 
         //check rows
         if (board[0] == player && board[1] == player && board[2] == player) true
-        else if (board[3] == player && board[4] == player && board[5] == player) true
-        else if (board[6] == player && board[7] == player && board[8] == player) true
+        // TODO check other two rows
 
         //check columns
         else if (board[0] == player && board[3] == player && board[6] == player) true
-        else if (board[1] == player && board[4] == player && board[7] == player) true
-        else if (board[2] == player && board[5] == player && board[8] == player) true
+        // TODO Check other two columns
 
         //check diagonals
-        else if (board[2] == player && board[4] == player && board[6] == player) true
+        // TODO Check other diagonal
         else board[0] == player && board[4] == player && board[8] == player
 
     /**
