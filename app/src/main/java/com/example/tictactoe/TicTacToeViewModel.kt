@@ -23,6 +23,9 @@ class TicTacToeViewModel: ViewModel() {
 
         // TODO Write the logic for when a user clicks on one of the available TicTacToe spaces
 
+        // calculate and show game result
+        isGameOver = isGameWon(board, playerX) || isGameWon(board, playerO) || isBoardFull(board)
+        winner = gameResult(board)
     }
 
     /**
@@ -36,7 +39,8 @@ class TicTacToeViewModel: ViewModel() {
      * Determine if the board is full
      * */
     fun isBoardFull(board: ArrayList<String>): Boolean {
-        return TODO("Fill in the logic for determining if there are no more moves to make")
+        // TODO "Fill in the logic for determining if there are no more moves to make"
+        return false
     }
     /**
      * Determines if the game is won
