@@ -13,8 +13,7 @@ class TicTacToeViewModel: ViewModel() {
 
     var board by mutableStateOf(arrayListOf("", "", "", "", "", "", "", "", ""))
 
-
-    private var currentPlayer = "X" //Whos turn it currently is set to X by default
+    val currentPlayer = mutableStateOf("X") //Whos turn it currently is set to X by default
     private var playerX = "X"
     private var playerO = "O"
 
@@ -23,17 +22,17 @@ class TicTacToeViewModel: ViewModel() {
         if (isGameOver) return
 
         if (board[move] == "") {
-            if (currentPlayer == playerX) {
+            if (currentPlayer.value == playerX) {
                 board = ArrayList(board.toMutableList().also {
                     it[move] = playerX
                 })
-                currentPlayer = playerO
+                currentPlayer.value = playerO
 
             } else {
                 board = ArrayList(board.toMutableList().also {
                     it[move] = playerO
                 })
-                currentPlayer = playerX
+                currentPlayer.value = playerX
 
             }
         }
@@ -50,6 +49,7 @@ class TicTacToeViewModel: ViewModel() {
     fun reset() {
         isGameOver = false
         board = arrayListOf("", "", "", "", "", "", "", "", "")
+        currentPlayer.value = playerX
     }
 
     /**
@@ -65,6 +65,12 @@ class TicTacToeViewModel: ViewModel() {
      * Determines if the game is won
      * */
     fun isGameWon(board: ArrayList<String>, player: String): Boolean =
+        // The array containing the moves the players have made can be visualized as:
+        // [0][1][2]
+        // [3][4][5]
+        // [6][7][8]
+        // so, if player x has made a move in boxes 0, 3, and 6 that would mean that they have won.
+
         //check rows
         if (board[0] == player && board[1] == player && board[2] == player) true
         else if (board[3] == player && board[4] == player && board[5] == player) true

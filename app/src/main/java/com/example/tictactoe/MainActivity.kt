@@ -23,6 +23,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,12 +47,13 @@ class MainActivity : ComponentActivity() {
                 Scaffold {
                     it.calculateBottomPadding()
                     // A surface container using the 'background' color from the theme
-                    Surface(color = Color.White) {
+                    Surface {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.SpaceAround,
                             modifier = Modifier.fillMaxHeight()
                         ) {
+                            Text("player ${mainViewModel.currentPlayer.value}\'s turn")
                             ButtonGrid(board = mainViewModel.board, mainViewModel::play)
 
                             if (mainViewModel.isGameOver) {
@@ -102,7 +104,7 @@ fun TicTacToeButton(text: String, onclick: () -> Unit) {
     Box(modifier = Modifier.padding(8.dp)) {
         TextButton(
             shape = MaterialTheme.shapes.medium,
-            border = BorderStroke(1.dp, Color.Black),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface),
             onClick = onclick,
             enabled = text.isBlank()
         ) {
@@ -110,9 +112,9 @@ fun TicTacToeButton(text: String, onclick: () -> Unit) {
                 text = text,
                 style = TextStyle(
                     fontSize = 35.sp,
-                    color = Color.Black,
                     fontFamily = FontFamily.Monospace
                 ),
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.padding(16.dp).size(40.dp).fillMaxHeight().align(Alignment.CenterVertically),
                 textAlign = TextAlign.Center
             )
