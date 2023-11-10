@@ -13,7 +13,7 @@ class TicTacToeViewModel: ViewModel() {
 
     var board by mutableStateOf(arrayListOf("", "", "", "", "", "", "", "", ""))
 
-    val currentPlayer = mutableStateOf("X") //Whos turn it currently is set to X by default
+    var currentPlayer by mutableStateOf("X") //Whos turn it currently is set to X by default
     private var playerX = "X"
     private var playerO = "O"
 
@@ -22,17 +22,17 @@ class TicTacToeViewModel: ViewModel() {
         if (isGameOver) return
 
         if (board[move] == "") {
-            if (currentPlayer.value == playerX) {
+            if (currentPlayer == playerX) {
                 board = ArrayList(board.toMutableList().also {
                     it[move] = playerX
                 })
-                currentPlayer.value = playerO
+                currentPlayer = playerO
 
             } else {
                 board = ArrayList(board.toMutableList().also {
                     it[move] = playerO
                 })
-                currentPlayer.value = playerX
+                currentPlayer = playerX
 
             }
         }
@@ -49,7 +49,7 @@ class TicTacToeViewModel: ViewModel() {
     fun reset() {
         isGameOver = false
         board = arrayListOf("", "", "", "", "", "", "", "", "")
-        currentPlayer.value = playerX
+        currentPlayer = playerX
     }
 
     /**

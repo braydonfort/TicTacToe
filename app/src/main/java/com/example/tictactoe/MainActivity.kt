@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                             verticalArrangement = Arrangement.SpaceAround,
                             modifier = Modifier.fillMaxHeight()
                         ) {
-                            Text("player ${mainViewModel.currentPlayer.value}\'s turn")
+                            Text("player ${mainViewModel.currentPlayer}\'s turn")
                             ButtonGrid(board = mainViewModel.board, mainViewModel::play)
 
                             if (mainViewModel.isGameOver) {
