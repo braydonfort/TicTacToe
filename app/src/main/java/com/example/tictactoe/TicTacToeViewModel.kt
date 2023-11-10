@@ -23,17 +23,11 @@ class TicTacToeViewModel: ViewModel() {
 
         if (board[move] == "") {
             if (currentPlayer == playerX) {
-                board = ArrayList(board.toMutableList().also {
-                    it[move] = playerX
-                })
+                board[move] = playerX
                 currentPlayer = playerO
-
             } else {
-                board = ArrayList(board.toMutableList().also {
-                    it[move] = playerO
-                })
+                board[move] = playerO
                 currentPlayer = playerX
-
             }
         }
 
